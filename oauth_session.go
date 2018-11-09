@@ -387,11 +387,18 @@ func (o *OAuthSession) UserSubmissions(name string, after int64) ([]string, erro
 
 // AboutSubreddit returns moderators for the given subreddit name using OAuth.
 func (o *OAuthSession) AboutSubredditModerators(name string) ([]string, error) {
-	type moderator struct {
-		Data Moderator
+
+	type Response struct {
+		Data struct {
+			Children []struct {
+				Data *Moderator
+			}
+		}
 	}
+
+
 	//sr := &subreddit{}
-	mod := &moderator{}
+	mod := Response{}
 
 	link := fmt.Sprintf("https://oauth.reddit.com/r/%s/about/moderators", name)
 
@@ -405,7 +412,7 @@ func (o *OAuthSession) AboutSubredditModerators(name string) ([]string, error) {
 
 	for x := 0; x < len(mod.Data.Children); x++ {
 		//fmt.Printf("%v\n",  mod.Data.Children[x].Name)
-		mods = append(mods, mod.Data.Children[x].Name)
+		mods = append(mods, mod.Data.Children[x].Data.Name)
 	}
 
 	return mods, nil
