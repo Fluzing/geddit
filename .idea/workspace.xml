@@ -4,8 +4,6 @@
     <list default="true" id="7e889711-bc7b-4e1c-86ba-dcae75f9b351" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/moderator.go" afterPath="$PROJECT_DIR$/moderator.go" />
-      <change beforePath="$PROJECT_DIR$/oauth_session.go" afterPath="$PROJECT_DIR$/oauth_session.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="oauth_session.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oauth_session.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth_session.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="436">
@@ -24,6 +22,16 @@
               <folding>
                 <element signature="e#245#480#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,6 +125,7 @@
         <option value="$PROJECT_DIR$/submission_user.go" />
         <option value="$PROJECT_DIR$/moderator.go" />
         <option value="$PROJECT_DIR$/oauth_session.go" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -287,6 +296,14 @@
           <folding>
             <element signature="e#245#480#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
