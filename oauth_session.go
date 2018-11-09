@@ -61,6 +61,7 @@ func NewOAuthSession(clientID, clientSecret, useragent, redirectURL string) (*OA
 	o.OAuthConfig = &oauth2.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
+
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://www.reddit.com/api/v1/authorize",
 			TokenURL: "https://www.reddit.com/api/v1/access_token",
@@ -349,6 +350,67 @@ func (o *OAuthSession) AboutSubreddit(name string) (*Subreddit, error) {
 	}
 	return &sr.Data, nil
 }
+
+// UserSubmissions returns the articles a user has submitted
+func (o *OAuthSession) UserSubmissions(name string, after int64) ([]string, error) {
+	type submissions struct {
+		Data SubmissionUser
+	}
+
+	sr := &submissions{}
+	link := fmt.Sprintf("https://oauth.reddit.com/user/%s/submitted?limit=100", name)
+
+	err := o.getBody(link, sr)
+	if err != nil {
+		return nil, err
+	}
+
+	subs := make([]string,0)
+
+	for x := 0; x < len(sr.Data.Children); x++ {
+
+		created := sr.Data.Children[x].Data.Created
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		if  created > float64(after) {
+			subs = append(subs, sr.Data.Children[x].Data.Subreddit)
+		}
+	}
+
+
+	return subs, nil
+}
+
+
+// AboutSubreddit returns moderators for the given subreddit name using OAuth.
+func (o *OAuthSession) AboutSubredditModerators(name string) ([]string, error) {
+	type moderator struct {
+		Data Moderator
+	}
+	//sr := &subreddit{}
+	mod := &moderator{}
+
+	link := fmt.Sprintf("https://oauth.reddit.com/r/%s/about/moderators", name)
+
+	err := o.getBody(link, mod)
+
+	if err != nil {
+		return nil, err
+	}
+
+	mods := make([]string, 0)
+
+	for x := 0; x < len(mod.Data.Children); x++ {
+		//fmt.Printf("%v\n",  mod.Data.Children[x].Name)
+		mods = append(mods, mod.Data.Children[x].Name)
+	}
+
+	return mods, nil
+}
+
 
 // Comments returns the comments for a given Submission using OAuth.
 func (o *OAuthSession) Comments(h *Submission, sort PopularitySort, params ListingOptions) ([]*Comment, error) {
